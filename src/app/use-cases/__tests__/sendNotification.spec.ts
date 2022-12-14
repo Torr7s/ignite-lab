@@ -1,24 +1,20 @@
-import { Notification } from 'src/app/entities/notification.entity';
 import { SendNotificationUseCase } from '../sendNotification.use-case';
 
-const notifications: Notification[] = [];
-
-const notificationsRepository = {
-  async create(notification: Notification): Promise<void> {
-    notifications.push(notification);
-  }
-}
+import { NotificationsRepositoryInMemory } from '@/tests/repositories/notifications.repository.memo';
 
 describe('SendNotificationUseCase', (): void => {
   it('should be able to send a notification', async (): Promise<void> => {
-    const sendNotification = new SendNotificationUseCase(notificationsRepository);
+    const notificationsRepository = new NotificationsRepositoryInMemory();
+    const sendNotificationUseCase = new SendNotificationUseCase(notificationsRepository);
 
-    await sendNotification.execute({
+    const { notification } = await sendNotificationUseCase.execute({
       category: 'social',
       content: 'Esta é uma notificação',
       recipientId: 'fake-recipient-id'
     });
 
-    expect(notifications).toHaveLength(1);
+    expect(notificationsRepository.notifications).toHaveLength(1);
+    expect(notificationsRepository.notifications[0]).toEqual(notification);
   });
 });
+
