@@ -4,7 +4,7 @@ export default {
     "json",
     "ts"
   ],
-  "rootDir": "src",
+  "rootDir": ".",
   "testRegex": ".*\\.spec\\.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
@@ -13,5 +13,9 @@ export default {
     "**/*.(t|j)s"
   ],
   "coverageDirectory": "../coverage",
-  "testEnvironment": "node"
+  "testEnvironment": "node",
+  "moduleNameMapper": {
+    "^@/src/(.*)$": "<rootDir>/src/$1",
+    "^@/tests/(.*)$": "<rootDir>/tests/$1"
+  }
 }
