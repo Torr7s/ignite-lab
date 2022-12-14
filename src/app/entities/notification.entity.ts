@@ -26,7 +26,7 @@ export class Notification {
   }
 
   public get id(): string {
-    return this.id;
+    return this._id;
   }
 
   public get content(): NotificationContent {
