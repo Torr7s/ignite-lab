@@ -1,6 +1,6 @@
 import { NotificationContent } from './content.entity';
 
-import { Replace } from '../../helpers/replace.helper';
+import { Replace } from '@/src/helpers/replace.helper';
 
 export interface NotificationProps {
   content: NotificationContent;
