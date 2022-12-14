@@ -10,7 +10,7 @@ interface SendNotificationRequestProps {
 }
 
 interface SendNotificationResponseProps {
-  notification: Notification
+  notification: Notification;
 }
 
 export class SendNotificationUseCase {
